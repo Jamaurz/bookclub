@@ -1,7 +1,6 @@
 var axios = require('axios');
 
-//import prefix  from '../../etc/config.json';
-var apiPrefix = 'http://localhost:8080/';
+var apiPrefix = 'https://jamaurzbookclub.herokuapp.com/';
 
 export default {
     checkAuth() {

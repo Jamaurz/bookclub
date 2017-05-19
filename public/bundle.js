@@ -8658,8 +8658,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var axios = __webpack_require__(274);
 
-//import prefix  from '../../etc/config.json';
-var apiPrefix = 'http://localhost:8080/';
+var apiPrefix = 'https://jamaurzbookclub.herokuapp.com/';
 
 exports.default = {
     checkAuth: function checkAuth() {
