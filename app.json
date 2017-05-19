@@ -1,0 +1,6 @@
+{
+  "name": "BookClub",
+  "description": "Manage a Book Trading Club",
+  "repository": "https://github.com/Jamaurz/bookclub",
+  "keywords": ["MongoDB", "Mongoose", "full stack", "Express", "Node", "javascript", "ReactJs"]
+}
