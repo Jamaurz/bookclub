@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { checkMsg, msgStore } from "../actions/commonActions"
+import { Grid, Row, Col, Well, Button, Collapse, FormControl, Form } from 'react-bootstrap';
+
+import { checkMsg, msgStore, openReq, openTrade } from "../actions/commonActions"
 import { bookinputStote, addBook, addDbBook, booksStote, checkMyBooks, myBooksStore, delDbBook } from "../actions/bookActions"
 import { getRequest, requestStore, tradeStore, delDbReq, getTrade, delDbTrade, tradeBook } from "../actions/bookActions"
 import { modal } from 'react-redux-modal'
@@ -17,7 +19,9 @@ import BookDisplay from '../components/BookDisplay.jsx'
         books: store.book.books,
         myBooks: store.book.myBooks,
         request: store.book.request,
-        trade: store.book.trade
+        trade: store.book.trade,
+        openReq: store.common.openReq,
+        openTrade: store.common.openTrade
     };
 })
 
@@ -152,28 +156,45 @@ export default class MyBooks extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <div>
-                        <h3>Your trage requests ({this.props.request.length})</h3>
-                        <BookDisplay myBooks={this.props.request} handlerFunc={this.delDbReq.bind(this)} handlerText='Remove'/>
-                    </div>
+            <Grid>
+                <Grid>
+                    <Row>
+                        <Button onClick={ ()=> this.props.dispatch(openReq())}>
+                            Your trage requests ({this.props.request.length})
+                        </Button>
+                        <Collapse in={this.props.openReq}>
+                            <div>
+                                <BookDisplay myBooks={this.props.request} handlerFunc={this.delDbReq.bind(this)} handlerText='Remove'/>
+                            </div>
+                        </Collapse>
+                    </Row>
                     <hr />
-                    <div>
-                        <h3>Trade requests for you({this.props.trade.length})</h3>
-                        <BookDisplay
-                            myBooks={this.props.trade}
-                            handlerFunc={this.delDbTrade.bind(this)}
-                            handlerText='No'
-                            handlerFunc2={this.yesDbReq.bind(this)}
-                            handlerText2='Yes'
-                        />
-                    </div>
-                </div>
-                <input type='text' value={this.props.bookinput} onChange={this.changeBookInput.bind(this)} />
-                <input type='button' value='Add Book' onClick={this.addBook.bind(this)} />
+                    <Row>
+                        <Button onClick={ ()=> this.props.dispatch(openTrade())}>
+                            Trade requests for you({this.props.trade.length})
+                        </Button>
+                        <Collapse in={this.props.openTrade}>
+                            <div>
+                                <BookDisplay
+                                    myBooks={this.props.trade}
+                                    handlerFunc={this.delDbTrade.bind(this)}
+                                    handlerText='No'
+                                    handlerFunc2={this.yesDbReq.bind(this)}
+                                    handlerText2='Yes'
+                                />
+                            </div>
+                        </Collapse>
+                    </Row>
+                </Grid>
+                <hr />
+                <Well>
+                    <Form inline>
+                        <FormControl type='text' value={this.props.bookinput} onChange={this.changeBookInput.bind(this)} />
+                        <Button bsStyle="success" type='button' onClick={this.addBook.bind(this)} >Add Book</Button>
+                    </Form>
+                </Well>
                 <BookDisplay myBooks={this.props.myBooks} handlerFunc={this.delDbBook.bind(this)} handlerText='Remove'/>
-            </div>
+            </Grid>
         )
     }
 }

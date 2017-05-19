@@ -36,3 +36,15 @@ export function msgStore(value) {
         payload: value
     }
 }
+
+export function openReq() {
+    return {
+        type: "OPEN_REQ"
+    }
+}
+
+export function openTrade() {
+    return {
+        type: "OPEN_TRADE"
+    }
+}

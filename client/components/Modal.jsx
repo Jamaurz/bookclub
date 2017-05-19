@@ -1,5 +1,6 @@
 import React, {Component}  from 'react'
 import {modal} from 'react-redux-modal'
+import { Grid, Row, Col, Image, Well, Button, ButtonGroup, Clearfix } from 'react-bootstrap';
 
 export default class myModalComopnent extends Component {
     constructor(props) {
@@ -18,19 +19,25 @@ export default class myModalComopnent extends Component {
 
     render() {
         return (
-            <div>
-                <p>this is my modal</p>
-                <div>{
+            <Grid>
+                {
                     this.props.content.map((item, index)=> {
                         return (
                             <div key={index}>
-                                <h3>{item.title}</h3>
-                                <img src={item.thumbnail} alt={item.title} />
-                                <input type="button" onClick={() => { this.addDbBook(item)}} value='add' />
+                                <Row>
+                                    <Col xs={6}>
+                                        <Col xs={6} md={4}>
+                                            <Image src={item.thumbnail} alt={item.title} thumbnail />
+                                        </Col>
+                                        <Col xs={6} md={4}>
+                                            <h3>{item.title}</h3>
+                                            <Button bsStyle='primary' type="button" onClick={() => { this.addDbBook(item)}} >add</Button>
+                                        </Col>
+                                    </Col>
+                                </Row>
                             </div>
                         )})}
-                </div>
-            </div>
+            </Grid>
         );
     }
 }

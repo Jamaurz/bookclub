@@ -5,6 +5,7 @@ import { checkMsg, msgStore } from "../actions/commonActions"
 import { getUserInfo, settingsStore, setFullnameStore, setCityStore, setStateStore, setUsernameStore, saveSettings } from "../actions/settingsActions"
 
 import SettingsForm from '../components/Settings.jsx'
+import { Grid, Row, Col } from 'react-bootstrap';
 
 @connect((store, ownProps) => {
     return {
@@ -35,6 +36,7 @@ export default class Settings extends React.Component {
     }
 
     changeUsername(value){
+        //console.log('change username', value.target.value);
         this.props.dispatch(setUsernameStore(value.target.value));
     }
 
@@ -56,7 +58,7 @@ export default class Settings extends React.Component {
 
     render() {
         return (
-            <div>
+            <Grid>
                 <SettingsForm
                     obj={this.props.settings}
                     changeFullname={this.changeFullname.bind(this)}
@@ -65,7 +67,7 @@ export default class Settings extends React.Component {
                     changeState={this.changeState.bind(this)}
                     chlickSave={this.chlickSave.bind(this)}
                 />
-            </div>
+            </Grid>
         )
     }
 }

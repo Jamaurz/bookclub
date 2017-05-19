@@ -29,7 +29,7 @@ export function settingsStore(value) {
 
 export function setUsernameStore(value) {
     return {
-        type: "SET_UERNAME_STORE",
+        type: "SET_USERNAME_STORE",
         payload: value
     }
 }

@@ -1,30 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router';
+
+import { Form, FormGroup, ControlLabel, FormControl, Col, Button } from 'react-bootstrap';
 
 export default function Settings(props) {
     if(props.obj) {
         return  (
-            <form>
+            <Form horizontal>
+                <FormGroup controlId="formHorizontalUsername">
+                    <Col componentClass={ControlLabel} sm={2}>
+                        Username:
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl type='text' name='username' value={props.obj.username} onChange={props.changeUsername} />
+                    </Col>
+                </FormGroup>
+                <FormGroup controlId="formHorizontalFullname">
+                    <Col componentClass={ControlLabel} sm={2}>
+                        Fullname:
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl type='text' name='fullname' value={props.obj.fullname} onChange={props.changeFullname} />
+                    </Col>
+                </FormGroup>
+                <FormGroup controlId="formHorizontalCity">
+                    <Col componentClass={ControlLabel} sm={2}>
+                        City:
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl type='text' name='city' value={props.obj.city} onChange={props.changeCity} />
+                    </Col>
+                </FormGroup>
+                <FormGroup controlId="formHorizontalState">
+                    <Col componentClass={ControlLabel} sm={2}>
+                        State:
+                    </Col>
+                    <Col sm={10}>
+                        <FormControl type='text' name='state' value={props.obj.state} onChange={props.changeState} />
+                    </Col>
+                </FormGroup>
                 <div>
-                    <label for='setUsername'>Username:</label>
-                    <input type='text' name='username' id='setUsername' value={props.obj.username} onChange={props.changeUsername} />
+                    <Button bsStyle="success" type='button' onClick={props.chlickSave} block >Save</Button>
                 </div>
-                <div>
-                    <label for='setFullname'>Fullname:</label>
-                    <input type='text' name='fullname' id='setFullname' value={props.obj.fullname} onChange={props.changeFullname} />
-                </div>
-                <div>
-                    <label for='setCity'>City:</label>
-                    <input type='text' name='city' id='setCity' value={props.obj.city} onChange={props.changeCity} />
-                </div>
-                <div>
-                    <label for='setState'>State:</label>
-                    <input type='text' name='state' id='setState' value={props.obj.state} onChange={props.changeState} />
-                </div>
-                <div>
-                    <input type='button' value='Save' onClick={props.chlickSave} />
-                </div>
-            </form>
+            </Form>
         )
     } else {
         return <p></p>

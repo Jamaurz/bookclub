@@ -41,7 +41,6 @@ exports.addDbBook = function(book, emailO, callback) {
 };
 
 exports.delDbBook = function(email, book, callback) {
-    console.log('delDbBook', book);
     return Book.remove({emailOwner: email, _id: book}, function(err, doc) {
         if(err) throw err;
         Trade.remove({idBook: book}, function(err, doc) {

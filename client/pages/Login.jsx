@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux"
 
+import { Form, FormGroup, ControlLabel, FormControl, Grid, Col, Button } from 'react-bootstrap';
+
 @connect((store, ownProps) => {
     return {
     };
@@ -8,21 +10,27 @@ import { connect } from "react-redux"
 export default class Login extends React.Component {
     render() {
         return (
-            <div>
-                <form action="/login" method="post">
-                    <div>
-                        <label for='loginEmail'>Email:</label>
-                        <input type='email' name='username' id='loginEmail' required />
-                    </div>
-                    <div>
-                        <label for='loginPassword'>Password:</label>
-                        <input type='password' name='password' id='loginPassword' required />
-                    </div>
-                    <div>
-                        <input type='submit' value='Log In'/>
-                    </div>
-                </form>
-            </div>
+            <Grid>
+                <Form action="/login" method="post" horizontal>
+                    <FormGroup controlId="formHorizontalEmail">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Email:
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl type='email' name='username' required />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="formHorizontalPassword">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            Password:
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl type='password' name='password' required />
+                        </Col>
+                    </FormGroup>
+                    <Button bsStyle="primary" type='submit' block>Log In</Button>
+                </Form>
+            </Grid>
         )
     }
 }
