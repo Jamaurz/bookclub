@@ -22,19 +22,16 @@ export default function reducer(state={
             myBooks: action.payload
         }
     } else if (action.type == "ALL_BOOKS_STORE") {
-        console.log('all books store reducer');
         return {
             ...state,
             allBooks: action.payload
         }
     } else if (action.type == "REQUEST_STORE") {
-        console.log('all books store reducer');
         return {
             ...state,
             request: action.payload
         }
     } else if (action.type == "TRADE_STORE") {
-        console.log('all books store reducer');
         return {
             ...state,
             trade: action.payload

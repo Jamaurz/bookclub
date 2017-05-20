@@ -3,12 +3,12 @@ import { connect } from "react-redux"
 
 import { Grid, Row, Col, Well, Button, Collapse, FormControl, Form } from 'react-bootstrap';
 
+import { showModal } from '../actions/mymodalActions'
 import { checkMsg, msgStore, openReq, openTrade } from "../actions/commonActions"
 import { bookinputStote, addBook, addDbBook, booksStote, checkMyBooks, myBooksStore, delDbBook } from "../actions/bookActions"
 import { getRequest, requestStore, tradeStore, delDbReq, getTrade, delDbTrade, tradeBook } from "../actions/bookActions"
-import { modal } from 'react-redux-modal'
 
-import myModalComopnent from '../components/Modal.jsx'
+import MyModal from '../components/MyModal.jsx'
 import BookDisplay from '../components/BookDisplay.jsx'
 
 @connect((store, ownProps) => {
@@ -107,30 +107,18 @@ export default class MyBooks extends React.Component {
         });
     }
 
-    addModal() {
-        modal.add(myModalComopnent, {
-            addDbBook: this.addDbBook.bind(this),
-            content: this.props.books,
-            title: 'This is my modal',
-            size: 'medium', // large, medium or small,
-            closeOnOutsideClick: false, // (optional) Switch to true if you want to close the modal by clicking outside of it,
-            hideTitleBar: false, // (optional) Switch to true if do not want the default title bar and close button,
-            hideCloseButton: false // (optional) if you don't wanna show the top right close button
-            //.. all what you put in here you will get access in the modal props ;)
-        });
-    }
-
     changeBookInput(value) {
         this.props.dispatch(bookinputStote(value.target.value))
     }
 
     addBook() {
+        console.log('add book tiger');
         let newThis = this;
         addBook(encodeURIComponent(this.props.bookinput), function(data) {
             newThis.props.dispatch(bookinputStote(''));
             if(data) {
                 newThis.props.dispatch(booksStote(data));
-                newThis.addModal();
+                newThis.props.dispatch(showModal());
             } else {
                 newThis.props.dispatch(msgStore('invalid input'));
             }
@@ -191,6 +179,7 @@ export default class MyBooks extends React.Component {
                     <Form inline>
                         <FormControl type='text' value={this.props.bookinput} onChange={this.changeBookInput.bind(this)} />
                         <Button bsStyle="success" type='button' onClick={this.addBook.bind(this)} >Add Book</Button>
+                        <MyModal addDbBook={this.addDbBook.bind(this)} />
                     </Form>
                 </Well>
                 <BookDisplay myBooks={this.props.myBooks} handlerFunc={this.delDbBook.bind(this)} handlerText='Remove'/>

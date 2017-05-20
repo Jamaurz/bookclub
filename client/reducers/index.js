@@ -1,12 +1,11 @@
 import { combineReducers } from "redux"
 import { routerReducer } from "react-router-redux"
 
-import {reducer as modalReducer} from 'react-redux-modal'
-
 import common from "./commonReducer"
 import auth from "./authReducer"
 import settings from "./settingsReducer"
 import book from "./bookReducer"
+import mymodal from './mymodalReducer'
 
 export default combineReducers({
     routing: routerReducer,
@@ -14,5 +13,5 @@ export default combineReducers({
     auth,
     settings,
     book,
-    modals: modalReducer
+    mymodal
 })

@@ -1,6 +1,7 @@
 var axios = require('axios');
 
 var apiPrefix = 'https://jamaurzbookclub.herokuapp.com/';
+//var apiPrefix = 'http://localhost:8080/';
 
 export default {
     checkAuth() {

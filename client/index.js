@@ -10,7 +10,6 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router"
 import { syncHistoryWithStore } from "react-router-redux"
 
 import { Provider } from "react-redux"
-import ReduxModal from 'react-redux-modal'
 
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
@@ -39,7 +38,6 @@ ReactDOM.render(
                     <Route path='allbooks' component={AllBooks}/>
                 </Route>
             </Router>
-            <ReduxModal />
         </div>
         </Provider>,
     app);
