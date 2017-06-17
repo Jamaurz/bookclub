@@ -11,7 +11,7 @@
     MONGO_URI=
     APP_URL=
 
-## Heroku https://jamaurzbookclub.herokuapp.com
+## Heroku http://jamaurzbookclub.herokuapp.com
 
 * User Story: I can view all books posted by every user.
 
